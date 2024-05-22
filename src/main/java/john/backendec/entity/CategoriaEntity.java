@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,9 +18,10 @@ public class CategoriaEntity implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
+    @ManyToMany(mappedBy = "categorias")
+    private List<ProdutoEntity> produtos = new ArrayList<>();
 
-    public CategoriaEntity() {
-    }
+    public CategoriaEntity() {}
 
     public CategoriaEntity(int id, String nome) {
         this.id = id;
@@ -39,6 +42,14 @@ public class CategoriaEntity implements Serializable{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<ProdutoEntity> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<ProdutoEntity> produtos) {
+        this.produtos = produtos;
     }
 
     @Override

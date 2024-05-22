@@ -2,26 +2,27 @@ package john.backendec.entity;
 
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "pedido")
-public class PedidoEntity implements Serializable{
-    private static final long serialVersionUID = 1L;
+@Table(name = "cidade")
+public class CidadeEntity implements Serializable{
+    @Serial
+    private static final long serialVersionUID = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private Date instate;
+    private String nome;
 
-    public PedidoEntity() {
+    public CidadeEntity() {
     }
 
-    public PedidoEntity(int id, Date instate) {
+    public CidadeEntity(int id, String nome) {
         this.id = id;
-        this.instate = instate;
+        this.nome = nome;
     }
 
     public int getId() {
@@ -32,19 +33,19 @@ public class PedidoEntity implements Serializable{
         this.id = id;
     }
 
-    public Date getInstate() {
-        return instate;
+    public String getNome() {
+        return nome;
     }
 
-    public void setInstate(Date instate) {
-        this.instate = instate;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PedidoEntity that = (PedidoEntity) o;
+        CidadeEntity that = (CidadeEntity) o;
         return id == that.id;
     }
 
